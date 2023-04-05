@@ -50,7 +50,7 @@ app.post('/orders/:storeHash', (req, res) => {
       "customer_message": "Thank you",
       "order_is_digital": false,
      // "payment_method": "Credit Card",
-      "status_id": 4,
+      "status_id": 10,
     };
     //console.log(req.body.products)
     axios.post(`https://api.bigcommerce.com/stores/${storeHash}/v2/orders`, orderData, {
