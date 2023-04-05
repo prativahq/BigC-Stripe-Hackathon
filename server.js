@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // Endpoint to create a new order for a customer
-app.post('/orders/:storeHash', (req, res) => {
+app.post('/createorders/:storeHash', (req, res) => {
   const storeHash = req.params.storeHash;
   const accessToken = 'a47m82m3rut6mpfrhkwx8cdshr2iqg'; // Replace with your own access token
   const products=req.body.products;
@@ -50,7 +50,7 @@ app.post('/orders/:storeHash', (req, res) => {
       "customer_message": "Thank you",
       "order_is_digital": false,
      // "payment_method": "Credit Card",
-      "status_id": 10,
+      "status_id": 7,
     };
     //console.log(req.body.products)
     axios.post(`https://api.bigcommerce.com/stores/${storeHash}/v2/orders`, orderData, {
@@ -78,33 +78,33 @@ app.post('/orders/:storeHash', (req, res) => {
 });
 
 
-// Endpoint to update order status when order is fulfilled
-// app.put('/orders/:storeHash/:id/fulfill', (req, res) => {
-//   const storeHash = req.params.storeHash;
-//   const orderId = req.params.id;
-//   const accessToken = 'YOUR_ACCESS_TOKEN'; // Replace with your own access token
+//Endpoint to update order status when order is fulfilled
+app.put('/orders/:storeHash/:id/fulfill', (req, res) => {
+  const storeHash = req.params.storeHash;
+  const orderId = req.params.id;
+  const accessToken = 'a47m82m3rut6mpfrhkwx8cdshr2iqg'; // Replace with your own access token
 
-//   // Update the order with the provided ID and set its status to "Shipped"
-//   const orderData = {
-//     status_id: 4 // "fullfilled" status
-//   };
+  // Update the order with the provided ID and set its status to "Shipped"
+  const orderData = {
+    status_id: 10 // "fullfilled" status
+  };
 
-//   axios.put(`https://api.bigcommerce.com/stores/${storeHash}/v2/orders/${orderId}`, orderData, {
-//     headers: {
-//       'X-Auth-Token': accessToken,
-//       'Accept': 'application/json',
-//       'Content-Type': 'application/json'
-//     }
-//   })
-//   .then(response => {
-//     console.log(`Order ${orderId} has been updated to order fulfilled status`);
-//     res.sendStatus(200);
-//   })
-//   .catch(error => {
-//     console.error(`Unable to update order ${orderId} status: ${error}`);
-//     res.sendStatus(500);
-//   });
-// });
+  axios.put(`https://api.bigcommerce.com/stores/${storeHash}/v2/orders/${orderId}`, orderData, {
+    headers: {
+      'X-Auth-Token': accessToken,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => {
+    console.log(`Order ${orderId} has been updated to order fulfilled status`);
+    res.sendStatus(200);
+  })
+  .catch(error => {
+    console.error(`Unable to update order ${orderId} status: ${error}`);
+    res.sendStatus(500);
+  });
+});
 
 
 // Start the server
