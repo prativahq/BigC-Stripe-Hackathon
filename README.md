@@ -5,7 +5,7 @@ http://localhost:3000/orders/:storeHash
 with a JSON body that includes the customerPhoneNumber and products properties.
 JSON Body:
 {
-  "customerPhoneNumber": "+1234567890",
+  "phone": "+1234567890",
   "products": [
     {
       "product_id": 123,
