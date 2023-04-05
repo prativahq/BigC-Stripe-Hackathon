@@ -4,19 +4,14 @@ When calling the /createOrder endpoint with a query parameter, you would need to
 http://localhost:3000/orders/storeHash
 with a JSON body that includes the customeremail and products properties.
 JSON Body:
-{
-  "email": "abc@prativa.in",
-  "products": [
-    {
-      "product_id": 123,
-      "quantity": 2
-    },
-    {
-      "product_id": 456,
-      "quantity": 1
-    }
-  ]
-}
+{ "email": "abc@gmail.com", "products":[
+          {
+            "name": "Fog Linen Chambray Towel - Beige Stripe",
+            "quantity": 0,
+            "price_inc_tax": 0,
+            "price_ex_tax": 0
+          }
+        ] }
 
 when calling the end point, which updates an order when it is fulfilled, there are no query parameters needed since we are using a route parameter id to specify the order to update. The request method is a PUT method and we are sending data in the request body to update the order status.
 
