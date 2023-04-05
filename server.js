@@ -14,8 +14,8 @@ app.post('/orders/:storeHash', (req, res) => {
   const accessToken = 'YOUR_ACCESS_TOKEN'; // Replace with your own access token
 
   // Find the customer with the provided phone number
-  const customerPhoneNumber = req.body.phone;
-  axios.get(`https://api.bigcommerce.com/stores/${storeHash}/v3/customers?query=${customerPhoneNumber}`, {
+  const customeremail = req.body.email;
+  axios.get(`https://api.bigcommerce.com/stores/${storeHash}/v3/customers?query=${customeremail}`, {
     headers: {
       'X-Auth-Token': accessToken,
       'Accept': 'application/json'
