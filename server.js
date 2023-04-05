@@ -26,7 +26,13 @@ app.post('/orders/:storeHash', (req, res) => {
   .then(customerResponse => {
     const customer = customerResponse.data.data[0]; // Assume the first result is the correct customer
     const customerId = customer.id;
-    const address=customer.addresses;
+    const address={  
+      "state":customer.addresses[0].state_or_province,
+      "zip": customer.addresses[0].postal_code,
+      "country": customer.addresses[0].country,
+      "email":customeremail
+    };
+    //console.log(address);
     const orderData={
   
       "consignments": {
@@ -38,12 +44,7 @@ app.post('/orders/:storeHash', (req, res) => {
           }
         ]
       },
-      "billing_address": {
-        "state": "TX",
-      "zip": "12345",
-      "country": "United States",
-      "email": "janedoe@example.com"
-      },
+      "billing_address": address,
       "channel_id": 1,
       "customer_id": customerId,
       "customer_message": "Thank you",
