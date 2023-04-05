@@ -17,7 +17,6 @@ JSON Body:
     }
   ]
 }
-you would need to set the HTTP method to POST and the URL to http://localhost:3000/createOrder
 
 when calling the end point, which updates an order when it is fulfilled, there are no query parameters needed since we are using a route parameter id to specify the order to update. The request method is a PUT method and we are sending data in the request body to update the order status.
 
