@@ -11,11 +11,13 @@ app.use(bodyParser.json());
 // Endpoint to create a new order for a customer
 app.post('/orders/:storeHash', (req, res) => {
   const storeHash = req.params.storeHash;
-  const accessToken = 'YOUR_ACCESS_TOKEN'; // Replace with your own access token
-
+  const accessToken = 'a47m82m3rut6mpfrhkwx8cdshr2iqg'; // Replace with your own access token
+  
   // Find the customer with the provided phone number
-  const customeremail = req.body.email;
-  axios.get(`https://api.bigcommerce.com/stores/${storeHash}/v3/customers?query=${customeremail}`, {
+  var customeremail = req.body.email;
+  //console.log(customeremail);
+  //const encodedEmail = encodeURIComponent(customeremail);
+  axios.get(`https://api.bigcommerce.com/stores/${storeHash}/v3/customers?email:in=${customeremail}`, {
     headers: {
       'X-Auth-Token': accessToken,
       'Accept': 'application/json'
@@ -24,7 +26,7 @@ app.post('/orders/:storeHash', (req, res) => {
   .then(customerResponse => {
     const customer = customerResponse.data.data[0]; // Assume the first result is the correct customer
     const customerId = customer.id;
-
+    console.log(customerID);
     // Create a new order for the customer with the provided products
     const orderData = {
       customer_id: customerId,
@@ -49,7 +51,7 @@ app.post('/orders/:storeHash', (req, res) => {
     });
   })
   .catch(error => {
-    console.error(`Unable to find customer with phone number ${customerPhoneNumber}: ${error}`);
+    console.error(`Unable to find customer with customer email:${customeremail}: ${error}`);
     res.sendStatus(500);
   });
 });
