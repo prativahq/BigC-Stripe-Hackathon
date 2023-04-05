@@ -26,13 +26,13 @@ app.post('/orders/:storeHash', (req, res) => {
   .then(customerResponse => {
     const customer = customerResponse.data.data[0]; // Assume the first result is the correct customer
     const customerId = customer.id;
-    console.log(customerID);
+    //console.log(customerId);
     // Create a new order for the customer with the provided products
     const orderData = {
       customer_id: customerId,
       products: req.body.products
     };
-
+    //console.log(req.body.products)
     axios.post(`https://api.bigcommerce.com/stores/${storeHash}/v3/orders`, orderData, {
       headers: {
         'X-Auth-Token': accessToken,
