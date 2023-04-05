@@ -2,10 +2,10 @@
 
 When calling the /createOrder endpoint with a query parameter, you would need to use a POST request to 
 http://localhost:3000/orders/:storeHash
-with a JSON body that includes the customerPhoneNumber and products properties.
+with a JSON body that includes the customeremail and products properties.
 JSON Body:
 {
-  "phone": "+1234567890",
+  "email": "abc@prativa.in",
   "products": [
     {
       "product_id": 123,
